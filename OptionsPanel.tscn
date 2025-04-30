@@ -1,0 +1,313 @@
+[gd_scene load_steps=27 format=3 uid="uid://ddo7bbr0r0j3k"]
+
+[ext_resource type="Script" path="res://OptionsPanel.gd" id="1_ekw28"]
+[ext_resource type="Texture2D" uid="uid://sy2hulcfc86l" path="res://IMG_0854.PNG" id="1_hmkg7"]
+[ext_resource type="Texture2D" uid="uid://cx2snd2wvl3rr" path="res://IMG_0851.PNG" id="2_l0avr"]
+[ext_resource type="Texture2D" uid="uid://kbbfo1q62moo" path="res://IMG_0850.PNG" id="3_24uoh"]
+[ext_resource type="Texture2D" uid="uid://c68vigggthax0" path="res://IMG_0849.PNG" id="4_wnmbj"]
+[ext_resource type="Texture2D" uid="uid://g2hj2y827pjl" path="res://IMG_0856.PNG" id="6_d03nv"]
+[ext_resource type="Texture2D" uid="uid://bqvhslknnkcgg" path="res://IMG_0858.PNG" id="7_r165s"]
+[ext_resource type="Texture2D" uid="uid://ovtvsom5xuj8" path="res://IMG_0857.PNG" id="8_oq02b"]
+[ext_resource type="Script" path="res://CloseArea.gd" id="9_7guvi"]
+
+[sub_resource type="Animation" id="Animation_mycia"]
+resource_name = "SlideInLastImage"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LastImage:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-293, 923), Vector2(355, 923)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LastImage:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, true]
+}
+
+[sub_resource type="Animation" id="Animation_rkplr"]
+resource_name = "PanelAnimation"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Image1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Image2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.3, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [false, true, false, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Image3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Image4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Image5:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LastImage:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+
+[sub_resource type="Animation" id="Animation_dsml6"]
+resource_name = "RESET"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Image1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Image2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.3, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [false, true, false, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Image3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Image4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Image5:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LastImage:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ros17"]
+_data = {
+"PanelAnimation": SubResource("Animation_rkplr"),
+"RESET": SubResource("Animation_dsml6"),
+"SlideInLastImage": SubResource("Animation_mycia")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjcup"]
+size = Vector2(365.921, 67.9196)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_00oj6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4kqqk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kxeph"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fxsd3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l4dvw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofr3j"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8sjyp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_43bhw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yluq6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q2t02"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_341k3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_asnck"]
+
+[node name="OptionsPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ekw28")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(354, 924)
+texture = ExtResource("1_hmkg7")
+
+[node name="Image4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(358, 922)
+texture = ExtResource("6_d03nv")
+
+[node name="LastImage" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-293, 923)
+texture = ExtResource("7_r165s")
+
+[node name="Image5" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(358, 922)
+texture = ExtResource("8_oq02b")
+
+[node name="Image1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(358, 922)
+texture = ExtResource("2_l0avr")
+
+[node name="Image2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(358, 922)
+texture = ExtResource("3_24uoh")
+
+[node name="Image3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(358, 922)
+texture = ExtResource("4_wnmbj")
+
+[node name="PanelAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ros17")
+}
+next/RESET = &"SlideInLastImage"
+blend_times = [&"PanelAnimation", &"SlideInLastImage", 0.7, &"RESET", &"SlideInLastImage", 0.7]
+
+[node name="CloseArea" type="Area2D" parent="."]
+script = ExtResource("9_7guvi")
+
+[node name="CloseAreaShape" type="CollisionShape2D" parent="CloseArea"]
+position = Vector2(546.5, 795.08)
+scale = Vector2(2.94325, 33.1839)
+shape = SubResource("RectangleShape2D_gjcup")
+
+[node name="ExitButton" type="Button" parent="."]
+offset_left = 565.0
+offset_top = 865.0
+offset_right = 658.0
+offset_bottom = 958.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_00oj6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_4kqqk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kxeph")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fxsd3")
+
+[node name="SettingsButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 860.0
+offset_right = 510.0
+offset_bottom = 959.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_l4dvw")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ofr3j")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8sjyp")
+theme_override_styles/normal = SubResource("StyleBoxTexture_43bhw")
+
+[node name="ReminderButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 241.0
+offset_top = 857.0
+offset_right = 344.0
+offset_bottom = 950.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_yluq6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_q2t02")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_341k3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_asnck")

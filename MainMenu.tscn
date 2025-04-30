@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3h64stb5k1f8"]
+
+[ext_resource type="Script" path="res://MainMenu.gd" id="1_nkmnw"]
+[ext_resource type="Texture2D" uid="uid://sa8cjcrxlljp" path="res://54B5D7AF-76D5-4B8F-997A-88655CC4D3CA.JPEG" id="2_jvxem"]
+[ext_resource type="AudioStream" uid="uid://dbw4vo7ya570y" path="res://Zen Vibes.mp3" id="3_3sdvk"]
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_nkmnw")
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -548.0
+offset_top = -953.0
+offset_right = 541.0
+offset_bottom = 962.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("2_jvxem")
+expand_mode = 1
+
+[node name="StartButton" type="Button" parent="."]
+modulate = Color(0, 0, 0, 0.00392157)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -259.0
+offset_top = -105.0
+offset_right = 277.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsButton" type="Button" parent="."]
+modulate = Color(0.00392157, 0.00392157, 0.00392157, 0)
+anchors_preset = -1
+anchor_left = 0.255185
+anchor_top = 0.521
+anchor_right = 0.732259
+anchor_bottom = 0.561
+offset_left = 0.399994
+offset_top = -0.320068
+offset_right = 0.159973
+offset_bottom = 58.8799
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3sdvk")
+volume_db = -10.0
+autoplay = true
+
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]

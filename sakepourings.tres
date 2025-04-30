@@ -1,0 +1,34 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cs47dgonqykjl"]
+
+[ext_resource type="Shader" path="res://pouringsake.gdshader" id="1_pd6u8"]
+
+[resource]
+shader = ExtResource("1_pd6u8")
+shader_parameter/fade_height = 0.258
+shader_parameter/sharpness = 3.873
+shader_parameter/transparency = 1.0
+shader_parameter/modulate_color = Color(1, 1, 1, 1)
+shader_parameter/o_ring_color = Color(1, 1, 1, 0)
+shader_parameter/brightness = 2.0
+shader_parameter/min_radius = 0.001
+shader_parameter/max_radius = 0.1
+shader_parameter/ring_size = 0.523
+shader_parameter/ring_thickness = 0.02
+shader_parameter/growth_speed = 1.237
+shader_parameter/pixel_size = 0.018
+shader_parameter/max_rings = 2
+shader_parameter/particle_density = 0.3
+shader_parameter/particle_size = 0.01
+shader_parameter/particle_randomness = 0.5
+shader_parameter/particle_flicker = 0.2
+shader_parameter/float_amplitude = 0.016
+shader_parameter/float_speed = 2.497
+shader_parameter/o_ring_offset_x = -0.297
+shader_parameter/o_ring_offset_y = 0.337
+shader_parameter/o_ring_scale_x = 0.387
+shader_parameter/o_ring_scale_y = 1.398
+shader_parameter/i_cut_width = 0.128
+shader_parameter/i_cut_width_fade = 0.5
+shader_parameter/i_cut_height = 1.0
+shader_parameter/i_cut_offset_x = -0.292
+shader_parameter/i_cut_offset_y = 0.29

@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://b63d0u7vjt8f1"]
+
+[ext_resource type="Script" path="res://Reminderscene.gd" id="1_fav5y"]
+[ext_resource type="Texture2D" uid="uid://b6a2p3s0xcy58" path="res://Untitled (28).jpeg" id="1_q7wq7"]
+[ext_resource type="FontFile" uid="uid://cykx33bko636w" path="res://fonts/pixel_font.ttf" id="2_bsrxc"]
+
+[sub_resource type="FontVariation" id="FontVariation_0vser"]
+base_font = ExtResource("2_bsrxc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bd7i2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_csvff"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_la8y6"]
+
+[node name="ReminderScene" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_fav5y")
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -432.5
+offset_top = -394.0
+offset_right = 432.5
+offset_bottom = 394.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_q7wq7")
+stretch_mode = 4
+
+[node name="TextEditNote" type="TextEdit" parent="."]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+offset_left = -87.0
+offset_top = -208.0
+offset_right = 253.0
+offset_bottom = -8.0
+theme_override_fonts/font = SubResource("FontVariation_0vser")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxTexture_bd7i2")
+theme_override_styles/focus = SubResource("StyleBoxTexture_csvff")
+theme_override_styles/read_only = SubResource("StyleBoxTexture_la8y6")
+autowrap_mode = 2

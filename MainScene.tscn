@@ -1,0 +1,182 @@
+[gd_scene load_steps=18 format=3 uid="uid://8rkiwgthduod"]
+
+[ext_resource type="Script" path="res://MainScene.gd" id="1_ly6ov"]
+[ext_resource type="AudioStream" path="res://.godot/imported/Zen Vibes.mp3-d578ceb7f91be630e2f629ec2bb02032.mp3str" id="2_xvmol"]
+[ext_resource type="Texture2D" uid="uid://4l2xuan3xydl" path="res://Untitled.jpeg" id="3_srt6l"]
+[ext_resource type="Texture2D" uid="uid://brv1d2rr6br1o" path="res://noriko/IMG_0774.PNG" id="4_nnaop"]
+[ext_resource type="Texture2D" uid="uid://cl8mmbj2ethj0" path="res://noriko/IMG_0775.PNG" id="5_bo0wg"]
+[ext_resource type="Texture2D" uid="uid://cgkt6rrh08am7" path="res://noriko/IMG_0773.PNG" id="6_qkpnm"]
+[ext_resource type="Script" path="res://click_area.gd" id="7_67ieu"]
+[ext_resource type="Texture2D" uid="uid://r3x28861uxeu" path="res://IMG_0823.PNG" id="8_3fdx8"]
+
+[sub_resource type="GDScript" id="GDScript_6hgfo"]
+script/source = "extends Sprite2D
+
+# Reference to the AnimationPlayer node
+@onready var animation_player: AnimationPlayer = $NorikoAnimations
+# Reference to the ClickArea node
+@onready var click_area: Area2D = $ClickArea
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	# Play the idle animation by default
+	animation_player.play(\"Idle\")
+	# Connect the input_event signal of the ClickArea to a function
+	click_area.input_event.connect(_on_click_area_input_event)
+
+# Called when the ClickArea receives an input event
+func _on_click_area_input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		print(\"Clicked on Noriko!\")
+		animation_player.play(\"Action\")
+# Called when an animation finishes playing
+func _on_animation_finished(anim_name: String) -> void:
+	if anim_name == \"Action\":
+		print(\"Action animation finished! Returning to idle.\")
+		$NorikoAnimations.play(\"Idle\")  # Play the idle animation
+"
+
+[sub_resource type="Animation" id="Animation_lwafh"]
+resource_name = "Action"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_qkpnm")]
+}
+
+[sub_resource type="Animation" id="Animation_dlrij"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("4_nnaop"), ExtResource("5_bo0wg")]
+}
+
+[sub_resource type="Animation" id="Animation_e7d5l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_nnaop")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_njl0v"]
+_data = {
+"Action": SubResource("Animation_lwafh"),
+"Idle": SubResource("Animation_dlrij"),
+"RESET": SubResource("Animation_e7d5l")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lb5dd"]
+size = Vector2(77.5001, 107.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbxop"]
+size = Vector2(30.1587, 31.0493)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tt7w7"]
+size = Vector2(1524, 2108)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqk4a"]
+size = Vector2(61, 41)
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_ly6ov")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -3.05176e-05)
+stream = ExtResource("2_xvmol")
+volume_db = -10.0
+autoplay = true
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(540, 500)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("3_srt6l")
+
+[node name="MainCamera" type="Camera2D" parent="Background"]
+position = Vector2(540, 960)
+enabled = false
+zoom = Vector2(0.5, 0.5)
+
+[node name="Noriko" type="Sprite2D" parent="."]
+position = Vector2(570, 490)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_nnaop")
+offset = Vector2(-3, 0)
+script = SubResource("GDScript_6hgfo")
+
+[node name="NorikoAnimations" type="AnimationPlayer" parent="Noriko"]
+libraries = {
+"": SubResource("AnimationLibrary_njl0v")
+}
+
+[node name="ClickArea" type="Area2D" parent="Noriko"]
+script = ExtResource("7_67ieu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Noriko/ClickArea"]
+position = Vector2(110, -71.25)
+shape = SubResource("RectangleShape2D_lb5dd")
+
+[node name="ActionTimer" type="Timer" parent="Noriko"]
+autostart = true
+
+[node name="MainMenuButton" type="TextureButton" parent="."]
+offset_left = 34.0
+offset_top = 838.0
+offset_right = 200.0
+offset_bottom = 988.0
+texture_normal = ExtResource("8_3fdx8")
+metadata/_edit_use_anchors_ = true
+
+[node name="ReminderHotspot" type="Area2D" parent="."]
+
+[node name="ReminderCollisionShape2D" type="CollisionShape2D" parent="ReminderHotspot"]
+position = Vector2(888, 558)
+scale = Vector2(2.52, 2.70537)
+shape = SubResource("RectangleShape2D_fbxop")
+
+[node name="ReminderCloseArea" type="Area2D" parent="."]
+
+[node name="ReminderCloseCollision" type="CollisionShape2D" parent="ReminderCloseArea"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(615, 469)
+shape = SubResource("RectangleShape2D_tt7w7")
+
+[node name="StartMinigameButton" type="Button" parent="."]
+offset_left = 843.0
+offset_top = 928.0
+offset_right = 1005.0
+offset_bottom = 959.0
+text = "Start Cooking Game
+"
+
+[node name="RecipeBookHotspot" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RecipeBookHotspot"]
+position = Vector2(516.5, 442.5)
+shape = SubResource("RectangleShape2D_yqk4a")
+
+[connection signal="animation_finished" from="Noriko/NorikoAnimations" to="Noriko" method="_on_animation_finished"]

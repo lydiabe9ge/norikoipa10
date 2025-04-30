@@ -1,0 +1,213 @@
+[gd_scene load_steps=10 format=3 uid="uid://drcmctrxg185c"]
+
+[ext_resource type="Script" path="res://RecipeBookScene.gd" id="1_uw6bo"]
+[ext_resource type="Texture2D" uid="uid://dlfygl07puop3" path="res://IMG_0836.PNG" id="2_btsb2"]
+[ext_resource type="Texture2D" uid="uid://doq7dhaxur65f" path="res://IMG_0837.PNG" id="3_3e7m6"]
+[ext_resource type="Texture2D" uid="uid://d1xv0tf8tmk82" path="res://IMG_0838.PNG" id="4_akera"]
+[ext_resource type="Texture2D" uid="uid://4ltm6l8k1myt" path="res://IMG_0839.PNG" id="5_cp88e"]
+
+[sub_resource type="Animation" id="Animation_ovmj7"]
+resource_name = "OpenBookAnimation"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BookContainer/Page1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BookContainer/Page2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BookContainer/Page3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BookContainer/Page4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BookContainer/RecipeScrollContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_bpar4"]
+resource_name = "REST"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BookContainer/Page1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BookContainer/Page2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BookContainer/Page3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BookContainer/Page4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BookContainer/RecipeScrollContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l6hmv"]
+_data = {
+"OpenBookAnimation": SubResource("Animation_ovmj7"),
+"REST": SubResource("Animation_bpar4")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vndbo"]
+size = Vector2(1235, 2053)
+
+[node name="RecipeBookScene" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_uw6bo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l6hmv")
+}
+
+[node name="BookContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -269.0
+offset_right = -6.0
+offset_bottom = -229.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+
+[node name="Page1" type="Sprite2D" parent="BookContainer"]
+visible = false
+position = Vector2(438, 928)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_btsb2")
+
+[node name="Page2" type="Sprite2D" parent="BookContainer"]
+visible = false
+position = Vector2(438, 928)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_3e7m6")
+
+[node name="Page3" type="Sprite2D" parent="BookContainer"]
+visible = false
+position = Vector2(438, 928)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_akera")
+
+[node name="Page4" type="Sprite2D" parent="BookContainer"]
+position = Vector2(438, 928)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("5_cp88e")
+
+[node name="RecipeScrollContainer" type="ScrollContainer" parent="BookContainer"]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 758.0
+offset_right = 648.0
+offset_bottom = 1427.0
+
+[node name="RecipeVBox" type="VBoxContainer" parent="BookContainer/RecipeScrollContainer"]
+layout_mode = 2
+
+[node name="CloseArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CloseArea"]
+visible = false
+position = Vector2(607.5, 1016.5)
+shape = SubResource("RectangleShape2D_vndbo")
