@@ -31,7 +31,7 @@ jobs:
 
       - name: 🚀 Export iOS project
         run: |
-          godot --headless --export-release "iOS" build/noriko-cooking.xcodeproj
+          godot --headless --export-release "Noriko" build/noriko-cooking.xcodeproj
         env:
           DISPLAY: :99.0
 
