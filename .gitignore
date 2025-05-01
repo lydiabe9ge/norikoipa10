@@ -1,3 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+.github/godot_templates/ios.zip
+.github/godot_templates/ios.zip
