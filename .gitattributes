@@ -2,3 +2,4 @@
 * text=auto eol=lf
 *.pck filter=lfs diff=lfs merge=lfs -text
 *.a filter=lfs diff=lfs merge=lfs -text
+godot_templates/ios.zip filter=lfs diff=lfs merge=lfs -text
