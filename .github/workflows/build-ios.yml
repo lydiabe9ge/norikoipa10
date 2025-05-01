@@ -21,18 +21,19 @@ jobs:
           sudo mv godot/Godot.app /Applications/Godot.app
           sudo ln -s /Applications/Godot.app/Contents/MacOS/Godot /usr/local/bin/godot
 
-      - name: 📦 Download iOS Export Templates
+      - name: 📦 Setup Export Templates
         run: |
           mkdir -p ~/Library/Application\ Support/Godot/export_templates/4.3.stable
-         curl -L https://downloads.tuxfamily.org/godotengine/4.3/rc2/export_templates/GodotExportTemplates_v4.3-rc2_iOS.zip -o ~/Library/Application\ Support/Godot/export_templates/4.3.stable/ios.zip
+          curl -L https://downloads.tuxfamily.org/godotengine/4.3/stable/export_templates/Godot_v4.3-stable_export_templates.tpz -o templates.tpz
+          unzip templates.tpz -d templates
+          cp templates/ios.zip ~/Library/Application\ Support/Godot/export_templates/4.3.stable/ios.zip
+
       - name: 🏗 Create build folder
         run: mkdir -p build
 
       - name: 🚀 Export iOS project
         run: |
           godot --headless --export-release "Noriko" build/noriko-cooking.xcodeproj
-        env:
-          DISPLAY: :99.0
 
       - name: 📦 Archive .ipa
         run: |
