@@ -24,9 +24,9 @@ jobs:
     - name: Download Godot 4.3 Export Templates (GitHub mirror)
       run: |
         mkdir -p ~/Library/Application\ Support/Godot/templates/4.3.stable
-        cd ~/Library/Application\ Support/Godot/templates/4.3.stable
         curl -L -o templates.tpz https://github.com/godotengine/godot-builds/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
         tar -xzf templates.tpz
+        mv templates/ios.zip ~/Library/Application\ Support/Godot/templates/4.3.stable/
 
     - name: Create build directory
       run: mkdir -p build
