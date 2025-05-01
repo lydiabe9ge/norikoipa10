@@ -24,8 +24,7 @@ jobs:
       - name: 📦 Download iOS Export Templates
         run: |
           mkdir -p ~/Library/Application\ Support/Godot/export_templates/4.3.stable
-          curl -L "https://drive.google.com/uc?export=download&id=1jmsv2AJdBx5ENLYCrvvhX9Ki2VaFAdf0" -o ~/Library/Application\ Support/Godot/export_templates/4.3.stable/ios.zip
-
+         curl -L https://downloads.tuxfamily.org/godotengine/4.3/rc2/export_templates/GodotExportTemplates_v4.3-rc2_iOS.zip -o ~/Library/Application\ Support/Godot/export_templates/4.3.stable/ios.zip
       - name: 🏗 Create build folder
         run: mkdir -p build
 
