@@ -11,47 +11,43 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: 📦 Checkout repo
+        uses: actions/checkout@v3
 
-    - name: Download Godot 4.3 stable (GitHub mirror)
-      run: |
-        curl -L -o Godot.zip https://github.com/godotengine/godot-builds/releases/download/4.3-stable/Godot_v4.3-stable_macos.universal.zip
-        unzip Godot.zip
-        mv Godot.app /Applications/Godot.app
-        ln -s /Applications/Godot.app/Contents/MacOS/Godot /usr/local/bin/godot
+      - name: 🧰 Download Godot 4.3
+        run: |
+          curl -L https://github.com/godotengine/godot-builds/releases/download/4.3-stable/Godot_v4.3-stable_macos.universal.zip -o godot.zip
+          unzip godot.zip -d godot
+          sudo mv godot/Godot.app /Applications/Godot.app
+          sudo ln -s /Applications/Godot.app/Contents/MacOS/Godot /usr/local/bin/godot
 
-    - name: Download Godot 4.3 Export Templates (GitHub mirror)
-      run: |
-        mkdir -p ~/Library/Application\ Support/Godot/export_templates/4.3.stable
-        curl -L -o templates.tpz https://github.com/godotengine/godot-builds/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
-        tar -xzf templates.tpz
-        mv templates/ios.zip ~/Library/Application\ Support/Godot/export_templates/4.3.stable/
+      - name: 📦 Setup Export Templates
+  run: |
+    mkdir -p ~/Library/Application\ Support/Godot/export_templates/4.3.stable
+    cp .github/godot_templates/ios.zip ~/Library/Application\ Support/Godot/export_templates/4.3.stable/ios.zip
+      - name: 🏗 Create build folder
+        run: mkdir -p build
 
-    - name: Create build directory
-      run: mkdir -p build
+      - name: 🚀 Export iOS project
+        run: |
+          godot --headless --export-release "iOS" build/noriko-cooking.xcodeproj
+        env:
+          DISPLAY: :99.0
 
-    - name: Export iOS project (Godot 4.3 syntax)
-      run: godot --headless --export-release "iOS" build/noriko-cooking.xcodeproj
-      env:
-        DISPLAY: :99.0
+      - name: 📦 Archive .ipa
+        run: |
+          cd build
+          xcodebuild -project noriko-cooking.xcodeproj -scheme "noriko-cooking" -configuration Release -archivePath noriko-cooking.xcarchive archive CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
 
-    - name: Set iOS Deployment Target
-      run: sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 10.0;/IPHONEOS_DEPLOYMENT_TARGET = 12.0;/' build/noriko-cooking.xcodeproj/project.pbxproj
+      - name: 📦 Package IPA
+        run: |
+          cd build
+          mkdir -p Payload
+          cp -r noriko-cooking.xcarchive/Products/Applications/noriko-cooking.app Payload/
+          zip -r noriko-cooking.ipa Payload
 
-    - name: Build iOS project
-      run: xcodebuild -project build/noriko-cooking.xcodeproj -scheme noriko-cooking -configuration Development -archivePath build/noriko-cooking.xcarchive archive CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
-
-    - name: Export IPA
-      run: |
-        cd build/noriko-cooking.xcarchive/Products/Applications
-        mkdir Payload
-        mv noriko-cooking.app Payload/
-        zip -r App.ipa Payload/
-        mv App.ipa ../../../
-
-    - name: Upload IPA to GitHub Artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: Ipa
-        path: build/App.ipa
+      - name: 📤 Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NorikoIPA
+          path: build/noriko-cooking.ipa
