@@ -31,8 +31,8 @@ jobs:
     - name: Create build directory
       run: mkdir -p build
 
-    - name: Export iOS project
-      run: godot --headless --export "iOS" build/noriko-cooking.xcodeproj
+    - name: Export iOS project (Godot 4.3 syntax)
+      run: godot --headless --export-release "iOS" build/noriko-cooking.xcodeproj
       env:
         DISPLAY: :99.0
 
